@@ -1,17 +1,29 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        SystemRezerwacji system = new SystemRezerwacji();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Wydarzenie koncert = new Wydarzenie("Koncert Symphony", 120.0);
+        Wydarzenie teatr = new Wydarzenie("Hamlet", 85.0);
+        system.dodajWydarzenie(koncert);
+        system.dodajWydarzenie(teatr);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        Klient klient1 = new Klient("Ela", "Kinnya", "ela@example.com");
+        Klient klient2 = new Klient("Julia", "Nowak", "julka@example.com");
+        system.dodajKlienta(klient1);
+        system.dodajKlienta(klient2);
+
+        system.dokonajRezerwacji(klient1, koncert);
+        system.dokonajRezerwacji(klient1, teatr);
+        system.dokonajRezerwacji(klient2, koncert);
+
+        System.out.println("Rezerwacje klienta " + klient1.getImie() + " " + klient1.getNazwisko() + ":");
+        klient1.wyswietlRezerwacje();
+
+        system.zmienCeneWydarzenia("Koncert Symphony", 150.0);
+
+        System.out.println("Rezerwacje klienta " + klient1.getImie() + " " + klient1.getNazwisko() + " po zmianie ceny:");
+        klient1.wyswietlRezerwacje();
+        System.out.println("Rezerwacje klienta " + klient2.getImie() + " " + klient2.getNazwisko() + " po zmianie ceny:");
+        klient2.wyswietlRezerwacje();
     }
 }
